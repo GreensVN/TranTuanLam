@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trần Tuấn Lâm - Học Sinh Lớp 8</title>
+    <title>Trần Tuấn Lâm - Học Sinh Lớp 8 | Lập Trình Viên Tương Lai</title>
+    <meta name="description" content="Trang web cá nhân của Trần Tuấn Lâm - Học sinh lớp 8 đam mê lập trình, công nghệ và toán học">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
             --primary: #4f46e5;
@@ -18,6 +20,7 @@
             --success: #10b981;
             --warning: #f59e0b;
             --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+            --dark-gradient: linear-gradient(135deg, #3b3669, #1e1a3d);
         }
         
         * {
@@ -48,7 +51,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
             z-index: 1000;
@@ -58,6 +61,7 @@
         .navbar.scrolled {
             padding: 0.8rem 5%;
             background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
         .logo {
@@ -67,6 +71,11 @@
             text-decoration: none;
             display: flex;
             align-items: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
         }
         
         .logo i {
@@ -85,12 +94,13 @@
             font-size: 0.95rem;
             position: relative;
             transition: color 0.3s ease;
+            padding: 0.5rem 0;
         }
         
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
@@ -111,6 +121,11 @@
             cursor: pointer;
             font-size: 1.5rem;
             color: var(--secondary);
+            transition: transform 0.3s ease;
+        }
+        
+        .hamburger:hover {
+            transform: scale(1.1);
         }
         
         /* Hero Section */
@@ -119,7 +134,7 @@
             display: flex;
             align-items: center;
             padding: 6rem 5% 3rem;
-            background: var(--gradient);
+            background: var(--dark-gradient);
             color: white;
             position: relative;
             overflow: hidden;
@@ -141,16 +156,20 @@
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
         .hero h1 {
             font-size: 2.8rem;
             margin-bottom: 1.2rem;
             line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         
         .hero h1 span {
             color: #fbbf24;
+            display: inline-block;
         }
         
         .hero p {
@@ -163,6 +182,7 @@
             display: flex;
             gap: 1rem;
             justify-content: center;
+            flex-wrap: wrap;
         }
         
         .btn {
@@ -173,6 +193,8 @@
             text-decoration: none;
             transition: all 0.3s ease;
             font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
         }
         
         .btn-primary {
@@ -190,6 +212,7 @@
         .btn-outline {
             border: 2px solid white;
             color: white;
+            background: transparent;
         }
         
         .btn-outline:hover {
@@ -197,9 +220,19 @@
             color: var(--primary);
         }
         
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
         /* About Section */
         .section {
             padding: 5rem 5%;
+            position: relative;
         }
         
         .section-title {
@@ -246,6 +279,12 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .about-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
         
         .about-image img {
@@ -292,6 +331,11 @@
         .info-item {
             display: flex;
             align-items: flex-start;
+            transition: transform 0.3s ease;
+        }
+        
+        .info-item:hover {
+            transform: translateX(5px);
         }
         
         .info-item i {
@@ -299,6 +343,11 @@
             font-size: 1rem;
             margin-right: 0.8rem;
             margin-top: 0.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .info-item:hover i {
+            transform: scale(1.2);
         }
         
         .info-text strong {
@@ -325,13 +374,30 @@
             padding: 1.5rem;
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .interest-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+            transition: height 0.3s ease;
         }
         
         .interest-box:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .interest-box:hover::before {
+            height: 10px;
         }
         
         .interest-icon {
@@ -345,12 +411,35 @@
             margin: 0 auto 1rem;
             color: white;
             font-size: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .interest-box:hover .interest-icon {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
         }
         
         .interest-box h3 {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
             color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .interest-box h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .interest-box:hover h3::after {
+            width: 100%;
         }
         
         .interest-box p {
@@ -371,17 +460,46 @@
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subject-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            z-index: 0;
+            transition: opacity 0.3s ease;
         }
         
         .subject-box:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+        
+        .subject-box:hover::after {
+            opacity: 0.1;
+        }
+        
+        .subject-box:hover .subject-title h3,
+        .subject-box:hover .subject-title p,
+        .subject-box:hover p,
+        .subject-box:hover .rating-text {
+            color: white;
         }
         
         .subject-header {
             display: flex;
             align-items: center;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
         
         .subject-icon {
@@ -395,23 +513,41 @@
             color: white;
             font-size: 1.2rem;
             margin-right: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .subject-box:hover .subject-icon {
+            transform: scale(1.1);
+            background: white;
+            color: var(--primary);
         }
         
         .subject-title h3 {
             font-size: 1.1rem;
             color: var(--dark);
             margin-bottom: 0.2rem;
+            transition: color 0.3s ease;
         }
         
         .subject-title p {
             color: var(--gray);
             font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+        
+        .subject-box p {
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
         }
         
         .subject-rating {
             display: flex;
             align-items: center;
             margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
         }
         
         .stars {
@@ -422,6 +558,95 @@
         .rating-text {
             color: var(--gray);
             font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+        
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-image {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .project-content p {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 0.8rem;
+        }
+        
+        .project-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(79, 70, 229, 0.1);
+            border-radius: 50%;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .project-links a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
         }
         
         /* Contact Section */
@@ -436,27 +661,62 @@
             padding: 2rem;
             border-radius: 15px;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .contact-info::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -30px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
         }
         
         .contact-info h3 {
             font-size: 1.5rem;
             margin-bottom: 1.2rem;
+            position: relative;
+            z-index: 1;
         }
         
         .contact-info p {
             margin-bottom: 1.5rem;
             opacity: 0.9;
             font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
         }
         
         .contact-details {
             margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
         
         .contact-item {
             display: flex;
             align-items: center;
             margin-bottom: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateX(5px);
         }
         
         .contact-item i {
@@ -469,6 +729,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-item:hover i {
+            transform: scale(1.2);
         }
         
         .contact-text h4 {
@@ -514,13 +779,14 @@
             border: 1px solid #cbd5e1;
             border-radius: 8px;
             font-family: 'Poppins', sans-serif;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
             font-size: 0.9rem;
         }
         
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
         }
         
         textarea.form-control {
@@ -539,6 +805,20 @@
             transition: all 0.3s ease;
             font-size: 0.9rem;
             width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
         }
         
         .submit-btn:hover {
@@ -546,11 +826,26 @@
             box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
         }
         
+        .submit-btn:hover::after {
+            transform: translateX(100%);
+        }
+        
         /* Footer */
         footer {
             background-color: var(--dark);
             color: white;
             padding: 4rem 5% 2rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: var(--gradient);
         }
         
         .footer-content {
@@ -595,13 +890,15 @@
             color: white;
             text-decoration: none;
             opacity: 0.8;
-            transition: opacity 0.3s ease, padding-left 0.3s ease;
+            transition: all 0.3s ease;
             font-size: 0.85rem;
+            display: inline-block;
         }
         
         .footer-links a:hover {
             opacity: 1;
-            padding-left: 5px;
+            transform: translateX(5px);
+            color: var(--primary-light);
         }
         
         .social-links {
@@ -621,11 +918,33 @@
             color: white;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-links a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .social-links a:hover {
-            background-color: var(--primary);
             transform: translateY(-3px);
+        }
+        
+        .social-links a:hover::after {
+            opacity: 1;
+        }
+        
+        .social-links a i {
+            position: relative;
+            z-index: 1;
         }
         
         .footer-bottom {
@@ -639,19 +958,59 @@
             font-size: 0.8rem;
         }
         
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+        }
+        
         /* Responsive */
+        @media (max-width: 1200px) {
+            .projects-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
         @media (max-width: 992px) {
             .about-content,
             .contact-container {
                 grid-template-columns: 1fr;
             }
             
-            .interests-container {
+            .interests-container,
+            .projects-container {
                 grid-template-columns: repeat(2, 1fr);
             }
             
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
             }
         }
         
@@ -687,16 +1046,18 @@
             }
             
             .interests-container,
-            .subjects-container {
+            .subjects-container,
+            .projects-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
         
         @media (max-width: 576px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
             .hero h1 {
                 font-size: 1.8rem;
             }
@@ -708,6 +1069,39 @@
             .info-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .animate-delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .animate-delay-3 {
+            animation-delay: 0.6s;
         }
     </style>
 </head>
@@ -719,6 +1113,7 @@
             <a href="#home">Trang chủ</a>
             <a href="#about">Giới thiệu</a>
             <a href="#interests">Sở thích</a>
+            <a href="#projects">Dự án</a>
             <a href="#subjects">Môn học</a>
             <a href="#contact">Liên hệ</a>
         </div>
@@ -729,14 +1124,15 @@
     
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Xin chào, tôi là <span>Trần Tuấn Lâm</span></h1>
+        <div class="hero-content animate__animated animate__fadeIn">
+            <h1>Xin chào, tôi là <span class="animate__animated animate__pulse animate__infinite">Trần Tuấn Lâm</span></h1>
             <p>Học sinh lớp 8 đam mê công nghệ thông tin, toán học và học hỏi. Luôn nỗ lực để trở thành một lập trình viên giỏi.</p>
             <div class="hero-btns">
-                <a href="#contact" class="btn btn-primary">Liên hệ với tôi</a>
-                <a href="#about" class="btn btn-outline">Tìm hiểu thêm</a>
+                <a href="#contact" class="btn btn-primary animate__animated animate__pulse animate__delay-1s">Liên hệ với tôi</a>
+                <a href="#projects" class="btn btn-outline animate__animated animate__pulse animate__delay-2s">Xem dự án</a>
             </div>
         </div>
+        <div class="particles" id="particles-js"></div>
     </section>
     
     <!-- About Section -->
@@ -746,10 +1142,10 @@
             <p>Một số thông tin cơ bản về bản thân và gia đình</p>
         </div>
         <div class="about-content">
-            <div class="about-image">
+            <div class="about-image animate__animated animate__fadeInLeft">
                 <img src="https://i.pinimg.com/736x/27/32/b3/2732b3d5d041e81b44b6f80582e97fac.jpg" alt="Trần Tuấn Lâm">
             </div>
-            <div class="about-info">
+            <div class="about-info animate__animated animate__fadeInRight">
                 <h3>Học sinh Trung học Cơ sở</h3>
                 <p>Tôi là Trần Tuấn Lâm, hiện đang là học sinh lớp 8 tại trường THCS Đoàn Thị Điểm, TP.HCM. Tôi có niềm đam mê đặc biệt với công nghệ thông tin, toán học và học hỏi.</p>
                 
@@ -810,31 +1206,31 @@
             <p>Những điều tôi yêu thích và thường làm trong thời gian rảnh</p>
         </div>
         <div class="interests-container">
-            <div class="interest-box">
+            <div class="interest-box animate__animated animate__fadeInUp animate-delay-1">
                 <div class="interest-icon">
                     <i class="fas fa-laptop-code"></i>
                 </div>
                 <h3>Lập trình</h3>
-                <p>Tôi thích học lập trình và tạo ra các ứng dụng nhỏ. Hiện đang học Python , C++ và HTML/CSS.</p>
+                <p>Tôi thích học lập trình và tạo ra các ứng dụng nhỏ. Hiện đang học Python, C++ và HTML/CSS.</p>
             </div>
             
-            <div class="interest-box">
+            <div class="interest-box animate__animated animate__fadeInUp animate-delay-2">
                 <div class="interest-icon">
                     <i class="fas fa-user-ninja"></i>
                 </div>
                 <h3>Anime</h3>
-                <p>Tôi thường xem anime vào thời gian rảnh.</p>
+                <p>Tôi thường xem anime vào thời gian rảnh. Đây là cách tôi thư giãn sau giờ học.</p>
             </div>
             
-            <div class="interest-box">
+            <div class="interest-box animate__animated animate__fadeInUp animate-delay-3">
                 <div class="interest-icon">
                     <i class="fas fa-music"></i>
                 </div>
                 <h3>Âm nhạc</h3>
-                <p>Tôi thích nghe các bản nhạc EDM . Âm nhạc giúp tôi thư giãn.</p>
+                <p>Tôi thích nghe các bản nhạc EDM. Âm nhạc giúp tôi tập trung và thư giãn.</p>
             </div>
             
-            <div class="interest-box">
+            <div class="interest-box animate__animated animate__fadeInUp">
                 <div class="interest-icon">
                     <i class="fas fa-book-open"></i>
                 </div>
@@ -842,7 +1238,7 @@
                 <p>Tôi thích đọc sách khoa học, công nghệ và truyện tranh/manga. Sách mở mang kiến thức.</p>
             </div>
             
-            <div class="interest-box">
+            <div class="interest-box animate__animated animate__fadeInUp">
                 <div class="interest-icon">
                     <i class="fas fa-gamepad"></i>
                 </div>
@@ -850,12 +1246,66 @@
                 <p>Tôi chơi game để giải trí, đặc biệt là các game chiến thuật và thể thao hoặc các game sáng tạo.</p>
             </div>
             
-            <div class="interest-box">
+            <div class="interest-box animate__animated animate__fadeInUp">
                 <div class="interest-icon">
                     <i class="fas fa-robot"></i>
                 </div>
-                <h3>Artificial Intelligence</h3>
+                <h3>Trí tuệ nhân tạo</h3>
                 <p>Tôi thích nghiên cứu và thử tập code về các trí tuệ nhân tạo.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="section-title">
+            <h2>Dự án của tôi</h2>
+            <p>Những dự án nhỏ tôi đã thực hiện trong quá trình học tập</p>
+        </div>
+        <div class="projects-container">
+            <div class="project-card animate__animated animate__fadeIn">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Dự án 1">
+                    <span class="project-tag">Python</span>
+                </div>
+                <div class="project-content">
+                    <h3>Game Rắn săn mồi</h3>
+                    <p>Game cổ điển viết bằng Python sử dụng thư viện Pygame.</p>
+                    <div class="project-links">
+                        <a href="#" title="Xem code"><i class="fab fa-github"></i></a>
+                        <a href="#" title="Xem demo"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card animate__animated animate__fadeIn">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Dự án 2">
+                    <span class="project-tag">HTML/CSS</span>
+                </div>
+                <div class="project-content">
+                    <h3>Website giới thiệu</h3>
+                    <p>Trang web giới thiệu bản thân bằng HTML, CSS và JavaScript.</p>
+                    <div class="project-links">
+                        <a href="#" title="Xem code"><i class="fab fa-github"></i></a>
+                        <a href="#" title="Xem demo"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card animate__animated animate__fadeIn">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Dự án 3">
+                    <span class="project-tag">C++</span>
+                </div>
+                <div class="project-content">
+                    <h3>Máy tính bỏ túi</h3>
+                    <p>Ứng dụng máy tính đơn giản viết bằng C++ với giao diện console.</p>
+                    <div class="project-links">
+                        <a href="#" title="Xem code"><i class="fab fa-github"></i></a>
+                        <a href="#" title="Xem demo"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -867,7 +1317,7 @@
             <p>Các môn học ở trường mà tôi đặc biệt quan tâm và đạt thành tích tốt</p>
         </div>
         <div class="subjects-container">
-            <div class="subject-box">
+            <div class="subject-box animate__animated animate__fadeInLeft">
                 <div class="subject-header">
                     <div class="subject-icon">
                         <i class="fas fa-square-root-alt"></i>
@@ -890,7 +1340,7 @@
                 </div>
             </div>
             
-            <div class="subject-box">
+            <div class="subject-box animate__animated animate__fadeInRight">
                 <div class="subject-header">
                     <div class="subject-icon">
                         <i class="fas fa-flask"></i>
@@ -913,7 +1363,7 @@
                 </div>
             </div>
             
-            <div class="subject-box">
+            <div class="subject-box animate__animated animate__fadeInLeft">
                 <div class="subject-header">
                     <div class="subject-icon">
                         <i class="fas fa-code"></i>
@@ -936,7 +1386,7 @@
                 </div>
             </div>
             
-            <div class="subject-box">
+            <div class="subject-box animate__animated animate__fadeInRight">
                 <div class="subject-header">
                     <div class="subject-icon">
                         <i class="fas fa-language"></i>
@@ -968,7 +1418,7 @@
             <p>Hãy gửi lời nhắn nếu bạn muốn trao đổi về học tập hoặc dự án nào đó</p>
         </div>
         <div class="contact-container">
-            <div class="contact-info">
+            <div class="contact-info animate__animated animate__fadeInLeft">
                 <h3>Thông tin liên hệ</h3>
                 <p>Tôi luôn sẵn sàng kết nối với bạn bè, thầy cô và những người có cùng sở thích. Đừng ngại liên hệ với tôi!</p>
                 
@@ -1004,23 +1454,23 @@
                 </div>
             </div>
             
-            <div class="contact-form">
-                <form action="mailto:ryantran149@gmail.com" method="post" enctype="text/plain">
+            <div class="contact-form animate__animated animate__fadeInRight">
+                <form action="https://formspree.io/f/your-form-id" method="POST">
                     <div class="form-group">
                         <label for="name">Họ tên</label>
-                        <input type="text" id="name" class="form-control" placeholder="Nhập họ tên của bạn" required>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Nhập họ tên của bạn" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" class="form-control" placeholder="Nhập email của bạn" required>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Nhập email của bạn" required>
                     </div>
                     <div class="form-group">
                         <label for="subject">Chủ đề</label>
-                        <input type="text" id="subject" class="form-control" placeholder="Nhập chủ đề bạn quan tâm" required>
+                        <input type="text" id="subject" name="subject" class="form-control" placeholder="Nhập chủ đề bạn quan tâm" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Nội dung</label>
-                        <textarea id="message" class="form-control" placeholder="Nhập nội dung tin nhắn" required></textarea>
+                        <textarea id="message" name="message" class="form-control" placeholder="Nhập nội dung tin nhắn" required></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Gửi tin nhắn</button>
                 </form>
@@ -1035,12 +1485,11 @@
                 <h3>Về tôi</h3>
                 <p>Trần Tuấn Lâm - Học sinh lớp 8 đam mê công nghệ và học hỏi. Luôn nỗ lực để trở thành một lập trình viên giỏi.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/@GreensVN"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.tiktok.com/@lamtran140912"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://github.com/GreensVN"><i class="fab fa-github"></i></a>
-
+                    <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@GreensVN" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.tiktok.com/@lamtran140912" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://github.com/GreensVN" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -1049,6 +1498,7 @@
                     <li><a href="#home">Trang chủ</a></li>
                     <li><a href="#about">Giới thiệu</a></li>
                     <li><a href="#interests">Sở thích</a></li>
+                    <li><a href="#projects">Dự án</a></li>
                     <li><a href="#subjects">Môn học</a></li>
                     <li><a href="#contact">Liên hệ</a></li>
                 </ul>
@@ -1065,6 +1515,11 @@
         </div>
     </footer>
     
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
     <script>
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
@@ -1074,6 +1529,14 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
+            
+            // Back to top button
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
         });
         
         // Mobile menu toggle
@@ -1082,12 +1545,14 @@
         
         hamburger.addEventListener('click', function() {
             navLinks.classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-times');
         });
         
         // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                hamburger.querySelector('i').classList.remove('fa-times');
             });
         });
         
@@ -1105,6 +1570,164 @@
                 });
             });
         });
+        
+        // Back to top button
+        document.querySelector('.back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Animation on scroll
+        const animateElements = document.querySelectorAll('.animate__animated');
+        
+        const animateOnScroll = function() {
+            animateElements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    const animationClass = element.classList[1];
+                    element.classList.add(animationClass);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Form submission
+        const contactForm = document.querySelector('.contact-form form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = this.querySelector('#name').value;
+            const email = this.querySelector('#email').value;
+            const subject = this.querySelector('#subject').value;
+            const message = this.querySelector('#message').value;
+            
+            // Here you would typically send the form data to a server
+            // For demonstration, we'll just show an alert
+            alert(`Cảm ơn bạn ${name} đã liên hệ! Tôi sẽ phản hồi sớm nhất có thể.`);
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+    
+    <!-- Particles.js for background animation -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles.js
+        if (typeof particlesJS !== 'undefined') {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        }
     </script>
 </body>
 </html>
